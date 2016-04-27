@@ -1,0 +1,13 @@
+--- qtbase/src/plugins/platforms/windows/qwindowswindow.cpp	2016-03-16 15:54:01.315453700 +0100
++++ qtbase/src/plugins/platforms/windows/qwindowswindow.cpp.orig	2016-03-16 16:27:26.780503000 +0100
+@@ -1052,9 +1052,9 @@
+         RegisterDragDrop(m_data.hwnd, m_dropTarget);
+         CoLockObjectExternal(m_dropTarget, true, true);
+     } else {
++        m_dropTarget->Release();
+         CoLockObjectExternal(m_dropTarget, false, true);
+         RevokeDragDrop(m_data.hwnd);
+-        m_dropTarget->Release();
+         m_dropTarget = 0;
+     }
+ #endif // !QT_NO_CLIPBOARD && !QT_NO_DRAGANDDROP
